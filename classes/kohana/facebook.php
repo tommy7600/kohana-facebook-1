@@ -17,13 +17,20 @@ class Kohana_Facebook {
             $this->_config = Kohana::$config->load('facebook');
             
             $this->_fb = new Facebook(array(
-              'appId'   => $this->_config->appID,
-              'secret'  => $this->_config->secret,
-              'cookie'  => false,
+                'appId'   => $this->_config->appID,
+                'secret'  => $this->_config->secret,
+                'cookie'  => true,
             ));
             
             $this->getUser();
-            $this->_me = $this->api('/me');
+            if ($this->getUserID()) {
+                try {
+                    $this->_me = $this->_fb->api('/me');
+                } catch (FacebookApiException $e) {
+//                    error_log($e);
+                    $this->_userID = NULL;
+                }
+            }
         }
     }
     
