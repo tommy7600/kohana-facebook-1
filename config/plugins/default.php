@@ -73,7 +73,7 @@
         'registration'      => array(
             'fields'        => 'name,email',
             'redirect-uri'  => '',
-            'width'         => 530,
+            'width'         => 615,
             'onvalidate'    => ''
         ),
         'facepile'          => array(

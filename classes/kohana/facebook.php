@@ -8,7 +8,7 @@ class Kohana_Facebook {
     private $_fb;
     private $_me;
     
-    public function __construct() {
+    public function __construct($connectFB = FALSE) {
         if (($path = Kohana::find_file('vendor', 'facebook/facebook'))) {
             ini_set('include_path', ini_get('include_path').PATH_SEPARATOR.dirname(dirname($path)));
 
@@ -16,19 +16,21 @@ class Kohana_Facebook {
             
             $this->_config = Kohana::$config->load('facebook');
             
-            $this->_fb = new Facebook(array(
-                'appId'   => $this->_config->appID,
-                'secret'  => $this->_config->secret,
-                'cookie'  => true,
-            ));
-            
-            $this->getUser();
-            if ($this->getUserID()) {
-                try {
-                    $this->_me = $this->_fb->api('/me');
-                } catch (FacebookApiException $e) {
-//                    error_log($e);
-                    $this->_userID = NULL;
+            if ($connectFB) {
+                $this->_fb = new Facebook(array(
+                    'appId'   => $this->_config->appID,
+                    'secret'  => $this->_config->secret,
+                    'cookie'  => true,
+                ));
+
+                $this->getUser();
+                if ($this->getUserID()) {
+                    try {
+                        $this->_me = $this->_fb->api('/me');
+                    } catch (FacebookApiException $e) {
+    //                    error_log($e);
+                        $this->_userID = NULL;
+                    }
                 }
             }
         }
