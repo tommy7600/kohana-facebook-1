@@ -1,25 +1,25 @@
 <?php defined('SYSPATH') or die('No direct script access.');
     
-class Facebook_Plugins {
+class Facebook_Plugins_HTML5 {
     private $_appID, $_adminUID, $_defaultSettings, $_availableOptions;
     private static $_instance;
     
     public function __construct() {
         $this->_appID               = Kohana::$config->load('facebook.appID');
         $this->_adminUID            = Kohana::$config->load('facebook.adminUID');
-        $this->_defaultSettings     = Kohana::$config->load('plugins/default');
-        $this->_availableOptions    = Kohana::$config->load('plugins/options');
+        $this->_defaultSettings     = Kohana::$config->load('plugins/html5/default');
+        $this->_availableOptions    = Kohana::$config->load('plugins/html5/options');
     }
     
     public static function instance() {
-        if (!isset(Facebook_Plugins::$_instance))
-            Facebook_Plugins::$_instance = new Facebook_Plugins();
+        if (!isset(self::$_instance))
+            self::$_instance = new self();
 
-        return Facebook_Plugins::$_instance;
+        return self::$_instance;
     }
     
     public function like($uSettings = array()) {
-        return '<fb:like '.$this->_options('like', $uSettings).'></fb:like>';
+        return '<div class="fb-like" '.$this->_options('like', $uSettings).'></div>';
     }
     
     public function send($uSettings = array()) { 
@@ -43,7 +43,7 @@ class Facebook_Plugins {
     }
     
     public function likeBox($uSettings = array()) { 
-        return '<fb:like-box '.$this->_options('like-box', $uSettings).'></fb:like-box>';
+        return '<div class="fb-like-box" '.$this->_options('like-box', $uSettings).'></div>';
     }
 
     public function login($uSettings = array()) { 
@@ -83,7 +83,7 @@ class Facebook_Plugins {
     }
     private function _options($pluginName, $uSettigns) {
         $settings = $this->_settings($pluginName, $uSettigns);
-        
+//        var_dump($settings);
         $options = '';
         foreach ($settings as $settingName => $settingValue) {
             if ($settingValue === '') continue;
@@ -91,11 +91,12 @@ class Facebook_Plugins {
         }
         return $options; 
     }
-    
+        
     private function _arrayExtends($default, $options) {
         foreach ($options as $key => $value)
             $default[$key] = (is_array($value)) ? $this->_arrayExtends($default[$key], $value) : $value;
         
         return $default;
     }
+    
 }

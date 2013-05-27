@@ -2,14 +2,14 @@
 
     return array(
         'like'              => array(
-            'href'          => URL::site(NULL, TRUE),
-            'send'          => 'true',
-            'layout'        => 'standard',
-            'show_faces'    => 'true',
-            'width'         => 450, //px
-            'action'        => 'like',
-            'font'          => 'verdana',
-            'colorscheme'   => 'light'
+            'data-href'          => URL::site(NULL, TRUE),
+            'data-send'          => 'true',
+//            'layout'        => 'standard',
+            'data-show-faces'    => 'true',
+            'data-width'         => 450, //px
+//            'action'        => 'like',
+//            'font'          => 'verdana',
+//            'colorscheme'   => 'light'
         ),
         'send'              => array(
             'href'          => URL::site(NULL, TRUE),
@@ -53,15 +53,15 @@
             'linktarget'    => '_blank',
         ),
         'like-box'          => array(
-            'href'          => URL::site(NULL, TRUE),
-            'width'         => 300,
-            'height'        => '',
-            'colorscheme'   => 'light',
-            'show_faces'    => 'true',
-            'stream'        => 'true',
-            'header'        => 'true',
-            'border_color'  => '#1A3C6C',
-            'force_wall'    => 'false'
+            'data-href'          => URL::site(NULL, TRUE),
+            'data-width'         => 300,
+            'data-height'        => '',
+//            'colorscheme'   => 'light',
+            'data-show-faces'    => 'true',
+            'data-stream'        => 'true',
+            'data-header'        => 'true',
+            'data-border-color'  => '#1A3C6C',
+//            'force_wall'    => 'false'
         ),
         'login'             => array(
             'show-faces'    => 'true',

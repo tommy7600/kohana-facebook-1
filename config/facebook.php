@@ -7,5 +7,5 @@
         'scopeArray'    => array(
             'read_stream',
             'offline_access'
-        )
+        ),
     );

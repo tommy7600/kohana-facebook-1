@@ -6,8 +6,15 @@
             session : '<?php echo json_decode(session_id()); ?>',
             status  : true, // check login status
             cookie  : true, // enable cookies to allow the server to access the session
-            xfbml   : true  // parse XFBML
+            xfbml   : true,  // parse XFBML
+            oauth: true
         });
+//        FB.Event.subscribe('auth.login', function(response) {
+//          window.location.reload();
+//        });
+//        FB.Event.subscribe('auth.logout', function(response) {
+//          window.location.reload('/wyloguj');
+//        });
 
         // Additional initialization code here
     };
@@ -19,4 +26,5 @@
         js.src = "//connect.facebook.net/pl_PL/all.js";
         d.getElementsByTagName('head')[0].appendChild(js);
     }(document));
+    
 </script>
